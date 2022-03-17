@@ -2,7 +2,7 @@
 
 Extension of [fabric-gametestapi](https://github.com/FabricMC/fabric/tree/1.17/fabric-gametest-api-v1)
 
-# Using this api
+# Use this api
 GroovyDSL:
 ```groovy
 repositories {
@@ -82,4 +82,4 @@ def example(context: TestContext): Unit = {
  val serverPlayer = context.createMockServerPlayer() 
 }
 ```
-> Full function list is [here]()
+> Full function list is [here](https://github.com/turtton/Weaver/blob/main/src/main/java/net/turtton/weaver/TestServerVariables.java)
