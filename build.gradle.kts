@@ -96,7 +96,18 @@ tasks.withType<ScalaCompile> {
 publishing {
     publications {
         create("mavenJava", MavenPublication::class.java) {
-            from(components.getByName("java"))
+            groupId = project.group.toString()
+            artifactId = project.base.archivesName.get()
+            version = project.version.toString()
+            from(components["java"])
+            pom {
+                licenses {
+                    license {
+                        name.set("MIT License")
+                        url.set("https://raw.githubusercontent.com/turtton/Weaver/main/LICENSE")
+                    }
+                }
+            }
         }
     }
 
@@ -106,5 +117,8 @@ publishing {
         // Notice: This block does NOT have the same function as the block in the top level.
         // The repositories here will be used for publishing your artifact, not for
         // retrieving dependencies.
+        maven {
+            url = uri("${System.getProperty("user.home")}/Documents/maven-repo")
+        }
     }
 }
