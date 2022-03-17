@@ -98,4 +98,4 @@ def example(context: TestContext): Unit = {
  val serverPlayer = context.createMockServerPlayer() 
 }
 ```
-> Full function list is [here](https://github.com/turtton/Weaver/blob/main/src/main/java/net/turtton/weaver/TestServerVariables.java)
+> Full function list is [here](https://github.com/turtton/Weaver/blob/main/src/main/java/net/turtton/weaver/TestContextExtensions.java)
