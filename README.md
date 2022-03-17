@@ -1,18 +1,18 @@
-# Weaver
+<h1><p align="center">Weaver</p></h1>
 
-<a href="https://github.com/turtton/maven-repo">
-<img alt="Maven metadata URL" src="https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fmaven.turtton.net%2Fnet%2Fturtton%2Fweaver%2Fmaven-metadata.xml&style=flat-square">
-</a>
+<p align="center" href="https://github.com/turtton/maven-repo">
+<img align="center" alt="Maven metadata URL" src="https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fmaven.turtton.net%2Fnet%2Fturtton%2Fweaver%2Fmaven-metadata.xml&style=flat-square">
+</p>
 
+
+<p align="center">
 <img alt="Minecraft" src="https://shields.io/badge/Minecraft-1.17.1-green?style=flat-square">
-
-<br>
-
 <img alt="Java" src="https://shields.io/badge/Java-16-pink?logo=java&style=flat-square">
 <img alt="Kotlin" src="https://shields.io/badge/Kotlin-1.16.10-blue?logo=kotlin&style=flat-square">
 <img alt="Scala" src="https://shields.io/badge/Scala3-3.1.1-red?logo=scala&style=flat-square">
-
-Extension of [fabric-gametestapi](https://github.com/FabricMC/fabric/tree/1.17/fabric-gametest-api-v1)
+</p>
+    
+<p align="center"> Extension of <a href="https://github.com/FabricMC/fabric/tree/1.17/fabric-gametest-api-v1">fabric-gametest-api<a> </p>
 
 # Use this api
 GroovyDSL:
