@@ -48,6 +48,10 @@ public class Example implements ModInitializer {
 }
 ```
 
+## Disables TestCommand
+
+See [this](https://github.com/turtton/Weaver/blob/f229191d00a0fc89ae187a314cd43e5c9c86e7c6/src/main/java/net/turtton/weaver/mixin/MixinTestCommand.java#L15)
+
 ## Provides some useful context extensions
 
 ### Examples:
