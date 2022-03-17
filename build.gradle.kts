@@ -23,7 +23,6 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
-    maven("https://s01.oss.sonatype.org/service/local/repositories/snapshots/content/")
     mavenCentral()
 }
 
