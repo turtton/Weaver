@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "weaver",
+  "version": "${version}",
+  "name": "Weaver",
+  "description": "extension of gametest-api",
+  "authors": [
+    "turtton"
+  ],
+  "contact": {
+    "repo": "https://github.com/turtton/weaver"
+  },
+  "license": "MIT",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "net.turtton.weaver.Weaver"
+    ]
+  },
+  "mixins": [
+    "weaver.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.17.1"
+  }
+}
