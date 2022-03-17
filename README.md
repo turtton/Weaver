@@ -2,6 +2,26 @@
 
 Extension of [fabric-gametestapi](https://github.com/FabricMC/fabric/tree/1.17/fabric-gametest-api-v1)
 
+# Using this api
+GroovyDSL:
+```groovy
+repositories {
+    maven 'https://maven.turtton.net'
+}
+dependencies {
+    implementation 'net.turtton:weaver:$VERSION'
+}
+```
+KotlinDSL
+```kotlin
+repositories {
+    maven("https://maven.turtton.net")
+}
+dependencies {
+    implementation(group = "net.turtton", name = "weaver", version = "$VERSION")
+}
+```
+
 # Features
 
 ## Enables connection to TestServer
