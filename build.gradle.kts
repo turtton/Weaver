@@ -17,6 +17,24 @@ base {
     archivesName.set(archives_base_name)
 }
 
+val gameTest = "gametest"
+sourceSets {
+    val main = main.get()
+    create(gameTest) {
+        compileClasspath += main.compileClasspath
+        compileClasspath += main.output
+        runtimeClasspath += main.runtimeClasspath
+        runtimeClasspath += main.output
+    }
+}
+val gameTestSource = sourceSets.getByName(gameTest)
+
+//configurations {
+//    getByName("${gameTest}Implementation") {
+//        extendsFrom(testImplementation.get())
+//    }
+//}
+
 repositories {
     // Add repositories to retrieve artifacts from in here.
     // You should only use this when depending on other mods because
@@ -42,10 +60,25 @@ dependencies {
     modImplementation(group = "net.fabricmc", name = "fabric-language-kotlin", version = "1.7.1+kotlin.1.6.10")
 //    modImplementation(group = "net.fabricmc", name = "fabric-language-scala", version = "1.1.0+scala.2.13.6")
     implementation("org.scala-lang:scala3-library_3:3.1.1")
+
+//    testImplementation("org.hamcrest:hamcrest:2.2")
+//    testImplementation("io.kotest:kotest-assertions-core:5.2.1")
 }
 
 loom {
     accessWidenerPath.set(file("src/main/resources/weaver.accesswidener"))
+
+    runs {
+        create(gameTest) {
+            server()
+            configName = gameTest
+            vmArgs += "-Dfabric-api.gametest"
+            vmArgs += "-Dfabric.api.gametest.report-file=${project.buildDir}/junit.xml"
+            runDir = "build/$gameTest"
+            setSource(gameTestSource)
+            isIdeConfigGenerated = true
+        }
+    }
 }
 
 tasks.getByName<ProcessResources>("processResources") {

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "gametest",
+  "version": "1",
+  "entrypoints": {
+    "fabric-gametest": [
+      "test.JavaGameTest",
+      "test.KotlinGameTest",
+      "test.ScalaGameTest"
+    ]
+  }
+}
