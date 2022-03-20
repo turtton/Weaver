@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "environment": "server",
+  "accessWidener": "weaver.accesswidener",
   "entrypoints": {
     "main": [
       "net.turtton.weaver.Weaver"
