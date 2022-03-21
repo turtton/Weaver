@@ -22,7 +22,7 @@ repositories {
     maven 'https://maven.turtton.net'
 }
 dependencies {
-    implementation 'net.turtton:weaver:$VERSION'
+    modImplementation 'net.turtton:weaver:$VERSION'
 }
 ```
 KotlinDSL
@@ -31,7 +31,7 @@ repositories {
     maven("https://maven.turtton.net")
 }
 dependencies {
-    implementation(group = "net.turtton", name = "weaver", version = "$VERSION")
+    modImplementation(group = "net.turtton", name = "weaver", version = "$VERSION")
 }
 ```
 
