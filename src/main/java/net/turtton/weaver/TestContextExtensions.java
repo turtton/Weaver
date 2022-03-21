@@ -10,10 +10,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameMode;
 
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TestContextExtensions {
+
+    private static final AtomicInteger playerId = new AtomicInteger();
+
     public static ServerPlayerEntity createMockServerPlayer(TestContext context, BlockPos relativePos) {
-        return new ServerPlayerEntity(context.getWorld().getServer(), context.getWorld(), new GameProfile(UUID.randomUUID(), "test-mock-server-player")) {
+        return new ServerPlayerEntity(context.getWorld().getServer(), context.getWorld(), new GameProfile(UUID.randomUUID(), "test-mock-server-player-" + playerId.getAndIncrement())) {
 
             {
                 networkHandler = new ServerPlayNetworkHandler(context.getWorld().getServer(), new ClientConnection(NetworkSide.SERVERBOUND), this);
