@@ -1,5 +1,6 @@
 package net.turtton.weaver.mixin;
 
+import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.GameProfileRepository;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
@@ -7,6 +8,7 @@ import com.mojang.datafixers.DataFixer;
 import net.minecraft.resource.ResourcePackManager;
 import net.minecraft.resource.ServerResourceManager;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.PlayerManager;
 import net.minecraft.server.WorldGenerationProgressListenerFactory;
 import net.minecraft.test.GameTestBatch;
 import net.minecraft.test.TestServer;
@@ -27,6 +29,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -88,6 +91,22 @@ public abstract class MixinTestServer extends MinecraftServer {
             cir.setReturnValue(false);
             cir.cancel();
         }
+    }
+
+    @Redirect(
+            method = "setupServer",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/test/TestServer;setPlayerManager(Lnet/minecraft/server/PlayerManager;)V"
+            )
+    )
+    private void changePlayerLimit(TestServer instance, PlayerManager playerManager) {
+        instance.setPlayerManager(new PlayerManager(instance, registryManager, saveHandler, 1) {
+            @Override
+            public boolean canBypassPlayerLimit(GameProfile profile) {
+                return true;
+            }
+        });
     }
 
     @Override
