@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("fabric-loom") version "0.11-SNAPSHOT"
+    id("fabric-loom") version "0.12-SNAPSHOT"
     `maven-publish`
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.7.10"
     scala
 }
 val mod_version: String by project
@@ -57,9 +57,9 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
 
-    modImplementation(group = "net.fabricmc", name = "fabric-language-kotlin", version = "1.7.1+kotlin.1.6.10")
+    modImplementation(group = "net.fabricmc", name = "fabric-language-kotlin", version = "1.8.2+kotlin.1.7.10")
 //    modImplementation(group = "net.fabricmc", name = "fabric-language-scala", version = "1.1.0+scala.2.13.6")
-    implementation("org.scala-lang:scala3-library_3:3.1.1")
+    implementation("org.scala-lang:scala3-library_3:3.1.2")
 
 //    testImplementation("org.hamcrest:hamcrest:2.2")
 //    testImplementation("io.kotest:kotest-assertions-core:5.2.1")
