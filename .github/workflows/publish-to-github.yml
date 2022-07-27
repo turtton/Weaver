@@ -1,9 +1,8 @@
 name: Publish
 on: [push]
-concurrency: ci-${{ github.ref }}
 jobs:
   publish:
-    if: ${{ github.repository_owner == 'Lepinoid' }}
+    if: ${{ github.repository_owner == 'turtton' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
