@@ -7,10 +7,10 @@
 </a>
 
 <p align="center">
-<img alt="Minecraft" src="https://shields.io/badge/Minecraft-1.18.2-green?style=flat-square">
+<img alt="Minecraft" src="https://shields.io/badge/Minecraft-1.19-green?style=flat-square">
 <img alt="Java" src="https://shields.io/badge/Java-17-pink?logo=java&style=flat-square">
-<img alt="Kotlin" src="https://shields.io/badge/Kotlin-1.16.10-blue?logo=kotlin&style=flat-square">
-<img alt="Scala" src="https://shields.io/badge/Scala3-3.1.1-red?logo=scala&style=flat-square">
+<img alt="Kotlin" src="https://shields.io/badge/Kotlin-1.17.10-blue?logo=kotlin&style=flat-square">
+<img alt="Scala" src="https://shields.io/badge/Scala3-3.1.2-red?logo=scala&style=flat-square">
 </p>
     
 <p align="center"> Extension of <a href="https://github.com/FabricMC/fabric/tree/1.17/fabric-gametest-api-v1">fabric-gametest-api<a> </p>
