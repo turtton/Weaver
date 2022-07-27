@@ -12,12 +12,12 @@ import net.minecraft.world.GameMode;
 import net.turtton.weaver.TestContextExtensions;
 
 public class JavaGameTest implements FabricGameTest {
-    @GameTest(structureName = EMPTY_STRUCTURE)
+    @GameTest(templateName = EMPTY_STRUCTURE)
     public void playerTest(TestContext context) {
         var serverPlayer = TestContextExtensions.createMockServerPlayer(context, BlockPos.ORIGIN);
         var targetPos = new BlockPos(0, 0, 1);
         context.setBlockState(targetPos, Blocks.STONE);
-        serverPlayer.interactionManager.processBlockBreakingAction(context.getAbsolutePos(targetPos), PlayerActionC2SPacket.Action.START_DESTROY_BLOCK, Direction.UP, context.getWorld().getTopY());
+        serverPlayer.interactionManager.processBlockBreakingAction(context.getAbsolutePos(targetPos), PlayerActionC2SPacket.Action.START_DESTROY_BLOCK, Direction.UP, context.getWorld().getTopY(), 1);
 
         context.expectBlock(Blocks.AIR, targetPos);
         context.complete();

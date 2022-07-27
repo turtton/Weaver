@@ -8,12 +8,12 @@ import net.minecraft.util.math.{BlockPos, Direction}
 import net.turtton.weaver.TestContextImplicits.*
 
 class ScalaGameTest extends FabricGameTest {
-  @GameTest(structureName = FabricGameTest.EMPTY_STRUCTURE)
+  @GameTest(templateName = FabricGameTest.EMPTY_STRUCTURE)
   def playerTest(context: TestContext): Unit = {
     val serverPlayer = context.createMockServerPlayer()
     val targetPos = BlockPos(0, 0, 1)
     context.setBlockState(targetPos, Blocks.STONE)
-    serverPlayer.interactionManager.processBlockBreakingAction(context.getAbsolutePos(targetPos), PlayerActionC2SPacket.Action.START_DESTROY_BLOCK, Direction.UP, context.getWorld.getTopY)
+    serverPlayer.interactionManager.processBlockBreakingAction(context.getAbsolutePos(targetPos), PlayerActionC2SPacket.Action.START_DESTROY_BLOCK, Direction.UP, context.getWorld.getTopY, 1)
     
     context.expectBlock(Blocks.AIR, targetPos)
     context.complete()

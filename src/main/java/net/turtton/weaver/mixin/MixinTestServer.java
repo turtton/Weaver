@@ -5,13 +5,18 @@ import com.mojang.authlib.GameProfileRepository;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.mojang.datafixers.DataFixer;
+import net.minecraft.block.entity.SkullBlockEntity;
 import net.minecraft.resource.ResourcePackManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerManager;
 import net.minecraft.server.SaveLoader;
 import net.minecraft.server.WorldGenerationProgressListenerFactory;
+import net.minecraft.server.dedicated.DedicatedServer;
+import net.minecraft.server.dedicated.MinecraftDedicatedServer;
+import net.minecraft.server.dedicated.gui.DedicatedServerGui;
 import net.minecraft.test.GameTestBatch;
 import net.minecraft.test.TestServer;
+import net.minecraft.util.ApiServices;
 import net.minecraft.util.UserCache;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameMode;
@@ -40,8 +45,10 @@ public abstract class MixinTestServer extends MinecraftServer {
 
     @Shadow @Final private static Logger LOGGER;
 
-    public MixinTestServer(Thread serverThread, LevelStorage.Session session, ResourcePackManager dataPackManager, SaveLoader saveLoader, Proxy proxy, DataFixer dataFixer, @Nullable MinecraftSessionService sessionService, @Nullable GameProfileRepository gameProfileRepo, @Nullable UserCache userCache, WorldGenerationProgressListenerFactory worldGenerationProgressListenerFactory) {
-        super(serverThread, session, dataPackManager, saveLoader, proxy, dataFixer, sessionService, gameProfileRepo, userCache, worldGenerationProgressListenerFactory);
+    @Shadow @Final private static ApiServices field_39441;
+
+    public MixinTestServer(Thread serverThread, LevelStorage.Session session, ResourcePackManager dataPackManager, SaveLoader saveLoader, Proxy proxy, DataFixer dataFixer, ApiServices apiServices, WorldGenerationProgressListenerFactory worldGenerationProgressListenerFactory) {
+        super(serverThread, session, dataPackManager, saveLoader, proxy, dataFixer, ApiServices.create(new YggdrasilAuthenticationService(Proxy.NO_PROXY), new File(".")), worldGenerationProgressListenerFactory);
     }
 
 
@@ -50,10 +57,7 @@ public abstract class MixinTestServer extends MinecraftServer {
             at = @At("RETURN")
     )
     private void insertServices(Thread serverThread, LevelStorage.Session session, ResourcePackManager dataPackManager, SaveLoader saveLoader, Collection<GameTestBatch> batches, BlockPos pos, CallbackInfo ci) {
-        YggdrasilAuthenticationService yggdrasilAuthenticationService = new YggdrasilAuthenticationService(Proxy.NO_PROXY);
-        sessionService = yggdrasilAuthenticationService.createMinecraftSessionService();
-        gameProfileRepo = yggdrasilAuthenticationService.createProfileRepository();
-        userCache = new UserCache(gameProfileRepo, new File(MinecraftServer.USER_CACHE_FILE.getName()));
+        SkullBlockEntity.setServices(apiServices, this);
     }
 
     @Inject(method = "setupServer", at = @At("HEAD"), cancellable = true)

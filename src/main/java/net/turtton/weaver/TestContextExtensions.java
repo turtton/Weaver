@@ -17,7 +17,7 @@ public class TestContextExtensions {
     private static final AtomicInteger playerId = new AtomicInteger();
 
     public static ServerPlayerEntity createMockServerPlayer(TestContext context, BlockPos relativePos) {
-        return new ServerPlayerEntity(context.getWorld().getServer(), context.getWorld(), new GameProfile(UUID.randomUUID(), "test-mock-server-player-" + playerId.getAndIncrement())) {
+        return new ServerPlayerEntity(context.getWorld().getServer(), context.getWorld(), new GameProfile(UUID.randomUUID(), "test-mock-server-player-" + playerId.getAndIncrement()), null) {
 
             {
                 networkHandler = new ServerPlayNetworkHandler(context.getWorld().getServer(), new ClientConnection(NetworkSide.SERVERBOUND), this);
