@@ -6,9 +6,10 @@ plugins {
     kotlin("jvm") version "1.7.10"
     scala
 }
-val mod_version: String by project
 val maven_group: String by project
-version = mod_version
+val minecraft_version: String by project
+val build_number = System.getenv("BUILD_NUMBER") ?: "local"
+version = "$minecraft_version+build.$build_number"
 group = maven_group
 
 val archives_base_name: String by project
@@ -44,7 +45,6 @@ repositories {
     mavenCentral()
 }
 
-val minecraft_version: String by project
 val yarn_mappings: String by project
 val loader_version: String by project
 val fabric_version: String by project
@@ -153,8 +153,11 @@ publishing {
         // Notice: This block does NOT have the same function as the block in the top level.
         // The repositories here will be used for publishing your artifact, not for
         // retrieving dependencies.
-        maven {
-            url = uri("${System.getProperty("user.home")}/Documents/maven-repo")
+        val targetPath = System.getenv("PUBLISH_PATH")
+        if (targetPath != null) {
+            maven {
+                url = uri(targetPath)
+            }
         }
     }
 }
