@@ -30,11 +30,11 @@ sourceSets {
 }
 val gameTestSource = sourceSets.getByName(gameTest)
 
-//configurations {
+// configurations {
 //    getByName("${gameTest}Implementation") {
 //        extendsFrom(testImplementation.get())
 //    }
-//}
+// }
 
 repositories {
     // Add repositories to retrieve artifacts from in here.
@@ -50,12 +50,12 @@ val loader_version: String by project
 val fabric_version: String by project
 dependencies {
     // To change the versions see the gradle.properties file
-    minecraft("com.mojang:minecraft:${minecraft_version}")
-    mappings("net.fabricmc:yarn:${yarn_mappings}:v2")
-    modImplementation("net.fabricmc:fabric-loader:${loader_version}")
+    minecraft("com.mojang:minecraft:$minecraft_version")
+    mappings("net.fabricmc:yarn:$yarn_mappings:v2")
+    modImplementation("net.fabricmc:fabric-loader:$loader_version")
 
     // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:$fabric_version")
 
     modImplementation(group = "net.fabricmc", name = "fabric-language-kotlin", version = "1.8.2+kotlin.1.7.10")
 //    modImplementation(group = "net.fabricmc", name = "fabric-language-scala", version = "1.1.0+scala.2.13.6")
@@ -81,12 +81,14 @@ loom {
     }
 }
 
+@Suppress("UnstableApiUsage")
 tasks.getByName<ProcessResources>("processResources") {
     inputs.property("version", project.version)
     filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
-        expand("version" to project.version,
+        expand(
+            "version" to project.version,
             "loader_version" to loader_version,
             "minecraft_version" to minecraft_version
         )
@@ -118,12 +120,11 @@ java {
     // if it is present.
     // If you remove this line, sources will not be generated.
     withSourcesJar()
-
 }
 
 tasks.getByName<Jar>("jar") {
     from("LICENSE") {
-        rename { "${it}_${archives_base_name}" }
+        rename { "${it}_$archives_base_name" }
     }
 }
 
