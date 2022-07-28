@@ -86,7 +86,10 @@ tasks.getByName<ProcessResources>("processResources") {
     filteringCharset = "UTF-8"
 
     filesMatching("fabric.mod.json") {
-        expand("version" to project.version)
+        expand("version" to project.version,
+            "loader_version" to loader_version,
+            "minecraft_version" to minecraft_version
+        )
     }
 }
 

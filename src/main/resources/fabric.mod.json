@@ -22,8 +22,8 @@
     "weaver.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.8",
+    "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "1.19"
+    "minecraft": "${minecraft_version}"
   }
 }
